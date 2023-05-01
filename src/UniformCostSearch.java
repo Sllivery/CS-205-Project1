@@ -31,7 +31,7 @@ public class UniformCostSearch {
             for (int[] item : direction) {
                 int newRow = zeroPosition[0] + item[0];
                 int newCol = zeroPosition[1] + item[1];
-                if (newRow < state.length && newCol < state[0].length) { // if position is legal
+                if (newRow > 0 && newRow < state.length && newCol > 0 && newCol < state[0].length) { // if position is legal
                     // then sawp 0 position with these new Position
                     int temp = state[zeroPosition[0]][zeroPosition[1]];
                     state[zeroPosition[0]][zeroPosition[1]] = state[newRow][newCol];
