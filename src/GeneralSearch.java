@@ -2,6 +2,7 @@ public abstract class GeneralSearch {
     protected int[][] board;
     protected final int[][] GOAL;
     protected final int[][] direction = {{-1, 0},{1, 0},{0, -1},{0, 1}};
+    protected String mode;
 
     public GeneralSearch(int[][] GOAL) {
         this.GOAL = GOAL;
@@ -10,6 +11,12 @@ public abstract class GeneralSearch {
     public GeneralSearch(int[][] board, int[][] GOAL) {
         this.board = board;
         this.GOAL = GOAL;
+    }
+
+    public GeneralSearch(int[][] board, int[][] GOAL, String mode) {
+        this.board = board;
+        this.GOAL = GOAL;
+        this.mode = mode;
     }
 
     public abstract boolean solution();

@@ -4,16 +4,16 @@ import java.util.HashSet;
 public class Entry {
     public static void main(String[] args) {
 
-        int[][] state = {
-                {1, 2, 3},
-                {4, 5, 6},
-                {7, 0, 8}
-        };
-
-        int[][] copy = new int[state.length][];
-        for (int i = 0; i < copy.length; i++) {
-            copy[i] = Arrays.copyOf(state[i], state[0].length);
-        }
+//        int[][] state = {
+//                {1, 2, 3},
+//                {4, 5, 6},
+//                {7, 0, 8}
+//        };
+//
+//        int[][] copy = new int[state.length][];
+//        for (int i = 0; i < copy.length; i++) {
+//            copy[i] = Arrays.copyOf(state[i], state[0].length);
+//        }
 
         int[][] test = {
                 {1, 2, 3},
@@ -26,9 +26,26 @@ public class Entry {
                 {4, 5, 6},
                 {7, 8, 0},
         };
+
+
+
+        long ucsStarTime = System.currentTimeMillis();
         UniformCostSearch ucs = new UniformCostSearch(test, GOAL);
         boolean solution = ucs.solution();
-        System.out.println(solution);
+        long ucsEndTime = System.currentTimeMillis();
+        System.out.println(solution + ": UCS spent " + (ucsEndTime - ucsStarTime));
+
+        long assStarTime = System.currentTimeMillis();
+        AStarSearch ass = new AStarSearch(test, GOAL, "misplaced");
+        boolean solution2 = ass.solution();
+        long assEndTime = System.currentTimeMillis();
+        System.out.println(solution2 + ": Misplaced spent " + (assEndTime - assStarTime));
+
+        long assStarTime2 = System.currentTimeMillis();
+        AStarSearch ass2 = new AStarSearch(test, GOAL, "manhattan");
+        boolean solution3 = ass2.solution();
+        long assEndTime3 = System.currentTimeMillis();
+        System.out.println(solution3 + ": Manhattan spent " + (assEndTime3 - assStarTime2));
 
 
 //        int[] test = {1, 2, 3, 4};
