@@ -11,7 +11,7 @@ public class UniformCostSearch extends GeneralSearch{
         super(board, GOAL);
     }
 
-    public boolean solution() {
+    public Node solution() {
         PriorityQueue<Node> queue = new PriorityQueue<>();
         HashSet<String> set = new HashSet<>();
         //initialize the queue
@@ -21,11 +21,12 @@ public class UniformCostSearch extends GeneralSearch{
             if (set.contains(currentNode.toString())) {
                 continue;
             } else {
+                nodeVisited++;
                 set.add(currentNode.toString());
             }
             int[][] state = currentNode.getState();
             if (Arrays.deepEquals(state, GOAL)) {
-                return true;
+                return currentNode;
             }
             // find 0 position
             int[] zeroPosition = findZeroPosition(state);
@@ -49,6 +50,6 @@ public class UniformCostSearch extends GeneralSearch{
                 }
             }
         }
-        return false;
+        return null;
     }
 }

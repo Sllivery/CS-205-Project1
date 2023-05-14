@@ -4,6 +4,12 @@ public abstract class GeneralSearch {
     protected final int[][] direction = {{-1, 0},{1, 0},{0, -1},{0, 1}};
     protected String mode;
 
+    public int getNodeVisited() {
+        return nodeVisited;
+    }
+
+    protected int nodeVisited;
+
     public GeneralSearch(int[][] GOAL) {
         this.GOAL = GOAL;
     }
@@ -19,7 +25,7 @@ public abstract class GeneralSearch {
         this.mode = mode;
     }
 
-    public abstract boolean solution();
+    public abstract Node solution();
 
     protected int[] findZeroPosition(int[][] array) {
         for (int i = 0; i < array.length; i++) {
@@ -76,9 +82,9 @@ public abstract class GeneralSearch {
         @Override
         public int compareTo(Node node) {
             if (this.cost > node.getCost()) {
-                return -1;
-            } else {
                 return 1;
+            } else {
+                return -1;
             }
         }
     }

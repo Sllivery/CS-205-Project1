@@ -16,9 +16,9 @@ public class Entry {
 //        }
 
         int[][] test = {
-                {1, 2, 3},
-                {4, 5, 6},
-                {7, 0, 8}
+                {1, 6, 7},
+                {5, 0, 3},
+                {4, 8, 2}
         };
 
         int[][] GOAL = {
@@ -31,20 +31,23 @@ public class Entry {
 
         long ucsStarTime = System.currentTimeMillis();
         UniformCostSearch ucs = new UniformCostSearch(test, GOAL);
-        boolean solution = ucs.solution();
+        GeneralSearch.Node solution = ucs.solution();
         long ucsEndTime = System.currentTimeMillis();
+        System.out.println("UCS visited: " + ucs.getNodeVisited());
         System.out.println(solution + ": UCS spent " + (ucsEndTime - ucsStarTime));
 
         long assStarTime = System.currentTimeMillis();
         AStarSearch ass = new AStarSearch(test, GOAL, "misplaced");
-        boolean solution2 = ass.solution();
+        GeneralSearch.Node solution2 = ass.solution();
         long assEndTime = System.currentTimeMillis();
+        System.out.println("Misplaced visited: " + ass.getNodeVisited());
         System.out.println(solution2 + ": Misplaced spent " + (assEndTime - assStarTime));
 
         long assStarTime2 = System.currentTimeMillis();
         AStarSearch ass2 = new AStarSearch(test, GOAL, "manhattan");
-        boolean solution3 = ass2.solution();
+        GeneralSearch.Node solution3 = ass2.solution();
         long assEndTime3 = System.currentTimeMillis();
+        System.out.println("Manhattan visited: " + ass2.getNodeVisited());
         System.out.println(solution3 + ": Manhattan spent " + (assEndTime3 - assStarTime2));
 
 

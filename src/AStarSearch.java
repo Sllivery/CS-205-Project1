@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 
-public class AStarSearch extends GeneralSearch{
+public class AStarSearch extends GeneralSearch {
     public AStarSearch(int[][] GOAL) {
         super(GOAL);
     }
@@ -16,7 +16,7 @@ public class AStarSearch extends GeneralSearch{
     }
 
     @Override
-    public boolean solution() {
+    public Node solution() {
         PriorityQueue<Node> queue = new PriorityQueue<>();
         HashSet<String> set = new HashSet<>();
         //initialize the queue
@@ -26,11 +26,12 @@ public class AStarSearch extends GeneralSearch{
             if (set.contains(currentNode.toString())) {
                 continue;
             } else {
+                nodeVisited++;
                 set.add(currentNode.toString());
             }
             int[][] state = currentNode.getState();
             if (Arrays.deepEquals(state, GOAL)) {
-                return true;
+                return currentNode;
             }
             // find 0 position
             int[] zeroPosition = findZeroPosition(state);
@@ -66,7 +67,7 @@ public class AStarSearch extends GeneralSearch{
                 System.out.println(e.getMessage());
             }
         }
-        return false;
+        return null;
     }
 
     private int misplacedTiles(int[][] currentState) {
@@ -86,7 +87,7 @@ public class AStarSearch extends GeneralSearch{
         int MD = 0;
         for (int i = 0; i < currentState.length; i++) {
             for (int j = 0; j < currentState[0].length; j++) {
-                if (currentState[i][j] != GOAL[i][j]){
+                if (currentState[i][j] != GOAL[i][j]) {
                     mispalcedNumber = currentState[i][j];
                     for (int k = 0; k < GOAL.length; k++) {
                         for (int l = 0; l < GOAL[0].length; l++) {
