@@ -12,6 +12,7 @@ public class UniformCostSearch extends GeneralSearch{
     }
 
     public Node solution() {
+        long ucsStarTime = System.currentTimeMillis();
         PriorityQueue<Node> queue = new PriorityQueue<>();
         HashSet<String> set = new HashSet<>();
         //initialize the queue
@@ -49,7 +50,11 @@ public class UniformCostSearch extends GeneralSearch{
                     queue.add(newNode);
                 }
             }
+            long currentTime = System.currentTimeMillis();
+            if (currentTime - ucsStarTime > 500) {
+                break;
+            }
         }
-        return null;
+        return new Node(new int[0][],0);
     }
 }
